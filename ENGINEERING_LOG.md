@@ -23,3 +23,5 @@ The mobile sidebar originally stayed in the accessibility tree while offscreen, 
 At the user's request the presentation name became Baby Swish AI Demo; Dan Swantek is the fictional operations manager shown in the UI. Git authorship remains Lalith Uriti, with LU in the shipping commit. A visible independent-demo disclaimer explains synthetic data, no real financial platform, no live AI call and no Swish affiliation.
 
 Production bundle inspection at the real /mortgage-ops-lab/ base path returned the final Baby Swish AI Demo title, loaded all assets without HTTP or runtime errors, and showed no horizontal overflow at 390px. Screenshots were recaptured from that export with the final branding and Dan Swantek profile. All 58 unit tests and four browser tests passed after final text and control changes.
+
+The user requested a permanent author footer. It attributes Lalith Uriti, Codex and OpenAI and states the demonstration thesis. A specific model name was omitted because its involvement could not be verified. The footer is fixed with reserved content space, so it remains visible without obscuring the final content.
