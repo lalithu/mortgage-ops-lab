@@ -25,3 +25,8 @@ At the user's request the presentation name became Baby Swish AI Demo; Dan Swant
 Production bundle inspection at the real /mortgage-ops-lab/ base path returned the final Baby Swish AI Demo title, loaded all assets without HTTP or runtime errors, and showed no horizontal overflow at 390px. Screenshots were recaptured from that export with the final branding and Dan Swantek profile. All 58 unit tests and four browser tests passed after final text and control changes.
 
 The user requested a permanent author footer. It attributes Lalith Uriti, Codex and OpenAI and states the demonstration thesis. A specific model name was omitted because its involvement could not be verified. The footer is fixed with reserved content space, so it remains visible without obscuring the final content.
+
+## Publication result
+The final source release e50909b passed type checking, all 58 unit tests, four Chromium browser tests and static export on GitHub's Linux runner. Pages deployment run 38595814898 stayed in `updating_pages` until the official deploy action's 600000ms timeout and cancelled publication. The public endpoint returned 404; no live deployment is claimed. The remaining step is to rerun the failed deploy job, and escalate to GitHub Pages support if provisioning remains stuck. No application error or missing authentication was reported by the deployment action.
+
+The final footer uses the user's requested wording: “Built by Lalith Uriti using Codex and OpenAI models.” followed by the bold thesis “I understand the problems you're solving. Here's proof I can solve problems like them.”

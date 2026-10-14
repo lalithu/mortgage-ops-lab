@@ -6,6 +6,8 @@ Follow a fictional mortgage from borrower relationship management through origin
 
 **Educational simulation using synthetic data. Not a real mortgage origination, underwriting, pricing, or trading platform.**
 
+Publication is currently blocked: the Pages deploy action remained in `updating_pages` and hit its ten-minute timeout. TypeScript, 58 unit tests, four Chromium tests and the production export all passed in CI. The target below is not yet verified live. To retry publication, rerun the failed deployment job in GitHub Actions; if the same Pages state persists, GitHub Pages support must resolve provisioning.
+
 GitHub Pages deployment target: [Baby Swish AI Demo](https://lalithu.github.io/mortgage-ops-lab/). Deployment status is recorded in [GitHub Actions](https://github.com/lalithu/mortgage-ops-lab/actions).
 
 ![Overview](docs/overview.png)
