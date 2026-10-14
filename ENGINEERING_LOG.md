@@ -30,3 +30,5 @@ The user requested a permanent author footer. It attributes Lalith Uriti, Codex 
 The final source release e50909b passed type checking, all 58 unit tests, four Chromium browser tests and static export on GitHub's Linux runner. Pages deployment run 38595814898 stayed in `updating_pages` until the official deploy action's 600000ms timeout and cancelled publication. The public endpoint returned 404; no live deployment is claimed. The remaining step is to rerun the failed deploy job, and escalate to GitHub Pages support if provisioning remains stuck. No application error or missing authentication was reported by the deployment action.
 
 The final footer uses the user's requested wording: “Built by Lalith Uriti using Codex and OpenAI models.” followed by the bold thesis “I understand the problems you're solving. Here's proof I can solve problems like them.”
+
+At the user’s request for faster publication, the coordinator built the latest source and pushed only the static export to a new gh-pages branch. Pages was switched to branch-based deployment at the root. The main workflow now verifies/builds without custom deployment to avoid conflicting publication modes.

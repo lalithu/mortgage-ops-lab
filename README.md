@@ -6,7 +6,7 @@ Follow a fictional mortgage from borrower relationship management through origin
 
 **Educational simulation using synthetic data. Not a real mortgage origination, underwriting, pricing, or trading platform.**
 
-Publication is currently blocked: the Pages deploy action remained in `updating_pages` and hit its ten-minute timeout. TypeScript, 58 unit tests, four Chromium tests and the production export all passed in CI. The target below is not yet verified live. To retry publication, rerun the failed deployment job in GitHub Actions; if the same Pages state persists, GitHub Pages support must resolve provisioning.
+Publication mode: generated static files are published from the `gh-pages` branch (root). The custom Actions deployment stalled in `updating_pages`, so publication was switched to GitHub’s branch-based Pages deployment. The main-branch workflow verifies the source and produces a static artifact without deploying.
 
 GitHub Pages deployment target: [Baby Swish AI Demo](https://lalithu.github.io/mortgage-ops-lab/). Deployment status is recorded in [GitHub Actions](https://github.com/lalithu/mortgage-ops-lab/actions).
 
@@ -60,8 +60,8 @@ Vitest covers domain invariants; Playwright covers the connected browser workflo
 ## Deploy to GitHub Pages
 
 1. Create a public repository named `mortgage-ops-lab` and push this project, including its lockfile, to `main`.
-2. In repository **Settings → Pages**, select **GitHub Actions** as the source.
-3. Run the included workflow or push to `main`. Pull requests run verification without publishing.
+2. In repository **Settings → Pages**, select **Deploy from a branch**, then `gh-pages` and `/ (root)`.
+3. Build with `PAGES_BUILD=1 npm run build`. Publish the contents of `out/`, including `.nojekyll`, to `gh-pages`. Main-branch pushes run verification only.
 4. Confirm the deployment job succeeds, then open and inspect the resulting Pages URL.
 
 The workflow runs `PAGES_BUILD=1 npm run build`, exports to `out/`, adds `.nojekyll`, and uploads that directory. This uses `/mortgage-ops-lab` as the base path; local builds use the root path. Next.js image optimization is disabled and trailing slashes are enabled for static hosting. A differently named repository requires updating the base path in `next.config.ts`. No Next.js server is needed in production.
