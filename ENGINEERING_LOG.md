@@ -32,3 +32,5 @@ The final source release e50909b passed type checking, all 58 unit tests, four C
 The final footer uses the user's requested wording: “Built by Lalith Uriti using Codex and OpenAI models.” followed by the bold thesis “I understand the problems you're solving. Here's proof I can solve problems like them.”
 
 At the user’s request for faster publication, the coordinator built the latest source and pushed only the static export to a new gh-pages branch. Pages was switched to branch-based deployment at the root. The main workflow now verifies/builds without custom deployment to avoid conflicting publication modes.
+
+Public deployment verified: https://lalithu.github.io/mortgage-ops-lab/ returned HTTP 200. A real Chromium session verified Baby Swish AI Demo title, exact final footer, CRM-to-origination navigation, insurance verification and advancement to Underwriting Review with no runtime or asset errors. The legacy build-status endpoint returned an error despite the live site serving the correct latest release; direct browser verification is the evidence of availability.

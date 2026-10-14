@@ -6,9 +6,9 @@ Follow a fictional mortgage from borrower relationship management through origin
 
 **Educational simulation using synthetic data. Not a real mortgage origination, underwriting, pricing, or trading platform.**
 
-Publication mode: generated static files are published from the `gh-pages` branch (root). The custom Actions deployment stalled in `updating_pages`, so publication was switched to GitHub’s branch-based Pages deployment. The main-branch workflow verifies the source and produces a static artifact without deploying.
+Publication mode: generated static files are published from the `gh-pages` branch (root). The custom Actions deployment stalled in `updating_pages`, so publication was switched to GitHub’s branch-based Pages deployment. The public URL was verified with HTTP 200, correct final footer, working loan progression, and no runtime or asset errors. The main-branch workflow verifies the source and produces a static artifact without deploying.
 
-GitHub Pages deployment target: [Baby Swish AI Demo](https://lalithu.github.io/mortgage-ops-lab/). Deployment status is recorded in [GitHub Actions](https://github.com/lalithu/mortgage-ops-lab/actions).
+Verified live demo: [Baby Swish AI Demo](https://lalithu.github.io/mortgage-ops-lab/). Deployment status is recorded in [GitHub Actions](https://github.com/lalithu/mortgage-ops-lab/actions).
 
 ![Overview](docs/overview.png)
 
