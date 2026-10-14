@@ -1,0 +1,15 @@
+import {describe,it,expect,vi,afterEach} from 'vitest';
+import {handleVisit,apparentIp} from '../supabase/functions/track-visit/handler';
+afterEach(()=>vi.unstubAllGlobals());
+describe('visit handler',()=>{
+ it('inserts server IP with no client IP or timestamp',async()=>{const insert=vi.fn().mockResolvedValue({error:null});const res=await handleVisit(new Request('https://x.test',{method:'POST',headers:{'x-forwarded-for':'203.0.113.2, 10.0.0.1','user-agent':'Browser'},body:JSON.stringify({path:'/mortgage-ops-lab/',ip:'fake'})}),{from:()=>({insert})});expect(res.status).toBe(204);expect(insert).toHaveBeenCalledWith({path:'/mortgage-ops-lab/',ip:'203.0.113.2',user_agent:'Browser',referrer:null})});
+ it('handles IPv6 and invalid headers',()=>{expect(apparentIp(new Headers({'cf-connecting-ip':'2001:db8::1'}))).toBe('2001:db8::1');expect(apparentIp(new Headers({'x-real-ip':'999.1.2.3'}))).toBeNull()});
+ it('rejects invalid payloads before insert',async()=>{const insert=vi.fn();for(const body of ['bad',JSON.stringify({path:'https://evil.test'}),'x'.repeat(9000)]){const r=await handleVisit(new Request('https://x.test',{method:'POST',body}),{from:()=>({insert})});expect([400,413]).toContain(r.status)}expect(insert).not.toHaveBeenCalled()});
+ it('returns no internal database error',async()=>{const r=await handleVisit(new Request('https://x.test',{method:'POST',body:'{"path":"/"}'}),{from:()=>({insert:async()=>({error:'secret database error'})})});expect(r.status).toBe(503);expect(await r.text()).toBe('')});
+});
+describe('tiny browser sender',()=>{
+ async function setup(beacon=true){vi.resetModules();vi.stubGlobal('window',{location:{hostname:'lalithu.github.io',pathname:'/mortgage-ops-lab/'}});vi.stubGlobal('document',{referrer:'https://example.com/'});const sendBeacon=vi.fn(()=>beacon);const fetch=vi.fn().mockResolvedValue({});vi.stubGlobal('navigator',{sendBeacon});vi.stubGlobal('fetch',fetch);return {...await import('../src/state/trackVisit'),sendBeacon,fetch}}
+ it('queues once despite repeated mount, resets for a new document',async()=>{const s=await setup();s.trackVisit('https://project.supabase.co/functions/v1/track-visit');s.trackVisit('https://project.supabase.co/functions/v1/track-visit');expect(s.sendBeacon).toHaveBeenCalledTimes(1);expect(s.fetch).not.toHaveBeenCalled();const next=await setup();next.trackVisit('https://project.supabase.co/functions/v1/track-visit');expect(next.sendBeacon).toHaveBeenCalledTimes(1)});
+ it('falls back once and swallows network errors',async()=>{const s=await setup(false);s.fetch.mockRejectedValue(Error('offline'));s.trackVisit('https://project.supabase.co/functions/v1/track-visit');await Promise.resolve();expect(s.fetch).toHaveBeenCalledTimes(1);expect(s.fetch.mock.calls[0][1]).toMatchObject({method:'POST',keepalive:true,credentials:'omit'})});
+ it('skips local and unconfigured tracking',async()=>{const s=await setup();window.location.hostname='localhost';s.trackVisit(undefined);s.trackVisit('https://project.supabase.co/functions/v1/track-visit');expect(s.sendBeacon).not.toHaveBeenCalled()});
+});
