@@ -73,3 +73,7 @@ This project was developed with AI assistance and real workstream delegation. Do
 ## Limits and future work
 
 The underwriting rules and investor offers are deliberately simplified demonstrations. localStorage provides single-browser persistence, without authentication, multi-user collaboration, durable server audit storage, or transaction guarantees. A future service could replace browser persistence with authenticated Go APIs and a database while retaining typed contracts and deterministic validation. Live model integration would require server-side credentials, input controls, and validation before any consequential action. The project is independent and is not affiliated with or endorsed by Swish or any financial institution.
+
+## Visitor tracking
+
+A tiny, cookie-free background request records page loads through a Supabase Edge Function. Records are private, with no public table policies or frontend secret keys. See [Supabase setup and visit queries](supabase/README.md). The live page-load and refresh requests were verified with successful 204 responses; visits can be viewed in the project's Table Editor.
