@@ -14,6 +14,8 @@ Verified live demo: [Baby Swish AI Demo](https://lalithu.github.io/mortgage-ops-
 
 ![Investor marketplace](docs/marketplace.png)
 
+Dark mode is the default. Use the header Light/Dark toggle to change it; your choice persists across refreshes and demo resets. The violet palette draws from Swish Labs’ public visual language; this remains an independent demo.
+
 ## Product
 
 - Overview metrics derived from shared borrower and loan state.
